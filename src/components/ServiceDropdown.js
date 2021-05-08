@@ -2,7 +2,8 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-
+// import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 const services = [
   { id: 1, name: "Todo" },
   { id: 2, name: "Twitter" },
@@ -14,7 +15,21 @@ function classNames(...classes) {
 }
 
 export default function ServiceDropdown() {
+  // const services = useSelector((state) => state.services);
+  // const [selected, setSelected] = useState("");
+
+  // if (services.length === 0) {
+  //   return null;
+  // }
+
+  // setSelected(services[0]);
   const [selected, setSelected] = useState(services[0]);
+
+  // if (services.length === 0) {
+  //   return null;
+  // } else {
+  //   setSelected(services[0]);
+  // }
 
   return (
     <div className="w-48 max-w-xs">

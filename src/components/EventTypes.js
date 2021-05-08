@@ -1,7 +1,20 @@
-import { eventTypes } from "../lib/db";
+// import { eventTypes } from "../lib/db";
+import { useState, useEffect } from "react";
 import { formatDateTime } from "../lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../actions/EventTypeActions";
 
-export default function EventTypes() {
+export default function EventTypes({ serviceId }) {
+  console.log(serviceId);
+  const eventTypes = useSelector((state) => state.eventTypes);
+  console.log(eventTypes);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actions.fetchEventTypes(serviceId));
+  }, [dispatch]);
+
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

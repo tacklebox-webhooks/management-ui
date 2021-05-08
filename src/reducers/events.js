@@ -1,3 +1,5 @@
+import * as types from "../constants/ActionTypes";
+
 const events = (state = [], action) => {
   switch (action.type) {
     case "FETCH_REQUESTS_SUCCESS":

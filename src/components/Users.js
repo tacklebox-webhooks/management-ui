@@ -1,8 +1,20 @@
-import { users } from "../lib/db";
+// import { users } from "../lib/db";
+import { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/outline";
 import { formatDateTime } from "../lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../actions/UserActions";
 
-export default function Users() {
+export default function Users({ serviceId }) {
+  const users = useSelector((state) => state.users);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("Loading users");
+    dispatch(actions.fetchUsers(serviceId));
+  }, [dispatch]);
+
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

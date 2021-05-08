@@ -1,6 +1,8 @@
+import * as types from "../constants/ActionTypes";
+
 const messages = (state = [], action) => {
   switch (action.type) {
-    case "FETCH_REQUESTS_SUCCESS":
+    case types.FETCH_MESSAGES_SUCCESS:
       return action.messages;
     default:
       return state;

@@ -1,6 +1,8 @@
+import * as types from "../constants/ActionTypes";
+
 const users = (state = [], action) => {
   switch (action.type) {
-    case "FETCH_REQUESTS_SUCCESS":
+    case types.FETCH_USERS_SUCCESS:
       return action.users;
     default:
       return state;

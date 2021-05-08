@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "./actions/ServiceActions";
+
 import {
   CalendarIcon,
   FolderIcon,
@@ -7,7 +10,7 @@ import {
   MenuIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Users from "./components/Users";
 import EventTypes from "./components/EventTypes";
@@ -19,7 +22,7 @@ import MobileNav from "./components/MobileNav";
 import ServiceDropdown from "./components/ServiceDropdown";
 
 const navigation = [
-  { name: "Home", path: "/", icon: HomeIcon, current: true },
+  { name: "Dashboard", path: "/", icon: HomeIcon, current: true },
   { name: "Users", path: "/users", icon: UsersIcon, current: false },
   {
     name: "Event Types",
@@ -36,8 +39,38 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+// const serviceId = "5c306f02-0825-4aff-bc8e-173b9d92c4bc";
+// const userId = "c86adfd8-1fdf-436c-b741-279ce8871731";
+
 export default function App() {
+  console.log("Render");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [page, setPage] = useState("");
+  const [currentServiceId, setCurrentServiceId] = useState(
+    "5c306f02-0825-4aff-bc8e-173b9d92c4bc"
+  );
+  // const [currentServiceId, setCurrentServiceId] = useState("");
+
+  const location = useLocation();
+
+  // Update nav bar and page title
+  useEffect(() => {
+    console.log("Updating title");
+    const newPage = navigation.find((item) => item.path === location.pathname);
+    const oldPage = navigation.find((item) => item.current === true);
+    oldPage.current = false;
+    newPage.current = true;
+    setPage(newPage.name);
+  }, [location.pathname]);
+
+  // const services = useSelector((state) => state.services);
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   console.log("Loading services");
+  //   dispatch(actions.fetchServices());
+  // }, [dispatch]);
 
   return (
     <div className="h-screen flex overflow-hidden bg-white">
@@ -62,17 +95,23 @@ export default function App() {
           <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
               <h1 className="inline-block text-2xl font-semibold text-gray-900">
-                Dashboard
+                {page}
               </h1>
               <div className="inline-block float-right">
-                <ServiceDropdown />
+                {/* <ServiceDropdown /> */}
               </div>
             </div>
             <div className="max-w-7xl mt-4 mx-auto px-4 sm:px-6 md:px-8">
               <Switch>
                 <Route path="/" exact component={Dashboard} />
-                <Route path="/users" component={Users} />
-                <Route path="/event_types" component={EventTypes} />
+                <Route
+                  path="/users"
+                  render={() => <Users serviceId={currentServiceId} />}
+                />
+                <Route
+                  path="/event_types"
+                  render={() => <EventTypes serviceId={currentServiceId} />}
+                />
                 <Route path="/endpoints" component={Endpoints} />
                 <Route path="/events" component={Events} />
                 <Route path="/messages" component={Messages} />
