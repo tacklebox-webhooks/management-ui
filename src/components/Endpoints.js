@@ -1,7 +1,17 @@
 import { endpoints } from "../lib/db";
 import { formatDateTime } from "../lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../actions/EndpointActions";
 
 export default function Endpoints() {
+  // const endpoints = useSelector((state) => state.endpoints);
+  // const currentService = useSelector((state) => state.currentService);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(actions.fetchEventTypes(currentService.uuid));
+  // }, [dispatch, currentService]);
+
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -14,7 +24,7 @@ export default function Endpoints() {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Timestamp
+                    Created At
                   </th>
                   <th
                     scope="col"
@@ -49,7 +59,7 @@ export default function Endpoints() {
                     }
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {formatDateTime(endpoint.created_at, true)}
+                      {formatDateTime(endpoint.created_at)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {endpoint.url}

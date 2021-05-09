@@ -4,16 +4,14 @@ import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/EventTypeActions";
 
-export default function EventTypes({ serviceId }) {
-  console.log(serviceId);
+export default function EventTypes() {
   const eventTypes = useSelector((state) => state.eventTypes);
-  console.log(eventTypes);
-
+  const currentService = useSelector((state) => state.currentService);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.fetchEventTypes(serviceId));
-  }, [dispatch]);
+    dispatch(actions.fetchEventTypes(currentService.uuid));
+  }, [dispatch, currentService]);
 
   return (
     <div className="flex flex-col">
@@ -52,7 +50,7 @@ export default function EventTypes({ serviceId }) {
                     }
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {formatDateTime(eventType.created_at, true)}
+                      {formatDateTime(eventType.created_at)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {eventType.name}

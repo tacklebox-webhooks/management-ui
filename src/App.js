@@ -20,6 +20,7 @@ import Messages from "./components/Messages";
 import DesktopNav from "./components/DesktopNav";
 import MobileNav from "./components/MobileNav";
 import ServiceDropdown from "./components/ServiceDropdown";
+import Header from "./components/Header";
 
 const navigation = [
   { name: "Dashboard", path: "/", icon: HomeIcon, current: true },
@@ -46,9 +47,9 @@ export default function App() {
   console.log("Render");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [page, setPage] = useState("");
-  const [currentServiceId, setCurrentServiceId] = useState(
-    "5c306f02-0825-4aff-bc8e-173b9d92c4bc"
-  );
+  // const [currentServiceId, setCurrentServiceId] = useState(
+  //   "5c306f02-0825-4aff-bc8e-173b9d92c4bc"
+  // );
   // const [currentServiceId, setCurrentServiceId] = useState("");
 
   const location = useLocation();
@@ -65,12 +66,12 @@ export default function App() {
 
   // const services = useSelector((state) => state.services);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   console.log("Loading services");
-  //   dispatch(actions.fetchServices());
-  // }, [dispatch]);
+  useEffect(() => {
+    console.log("Loading services");
+    dispatch(actions.fetchServices());
+  }, [dispatch]);
 
   return (
     <div className="h-screen flex overflow-hidden bg-white">
@@ -94,24 +95,19 @@ export default function App() {
         <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
           <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <h1 className="inline-block text-2xl font-semibold text-gray-900">
+              {/* <h1 className="inline-block text-2xl font-semibold text-gray-900">
                 {page}
               </h1>
               <div className="inline-block float-right">
-                {/* <ServiceDropdown /> */}
-              </div>
+                <ServiceDropdown />
+              </div> */}
+              <Header page={page} />
             </div>
             <div className="max-w-7xl mt-4 mx-auto px-4 sm:px-6 md:px-8">
               <Switch>
                 <Route path="/" exact component={Dashboard} />
-                <Route
-                  path="/users"
-                  render={() => <Users serviceId={currentServiceId} />}
-                />
-                <Route
-                  path="/event_types"
-                  render={() => <EventTypes serviceId={currentServiceId} />}
-                />
+                <Route path="/users" exact component={Users} />
+                <Route path="/event_types" exact component={EventTypes} />
                 <Route path="/endpoints" component={Endpoints} />
                 <Route path="/events" component={Events} />
                 <Route path="/messages" component={Messages} />

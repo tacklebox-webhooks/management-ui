@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 import services from "./services";
+import currentService from "./currentService";
 import users from "./users";
+import currentUser from "./currentUser";
 import eventTypes from "./eventTypes";
 import endpoints from "./endpoints";
 import events from "./events";
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
   endpoints,
   events,
   messages,
+  currentService,
+  currentUser,
 });
 
 export default rootReducer;

@@ -4,30 +4,32 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 // import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../actions/ServiceActions";
+import * as actions from "../actions/UserActions";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ServiceDropdown() {
-  const selected = useSelector((state) => state.currentService);
-  const services = useSelector((state) => state.services);
+export default function UserDropdown() {
+  // const currentService = useSelector((state) => state.currentService); // New
+  const selected = useSelector((state) => state.currentUser);
+  const users = useSelector((state) => state.users); // Old
+  // const users = useSelector((state) => state.users[currentService.uuid]); // New
   const dispatch = useDispatch();
 
-  console.log(selected);
-
-  const setSelected = (service) => {
-    dispatch(actions.setService(service));
+  const setSelected = (user) => {
+    dispatch(actions.setUser(user));
   };
 
+  // return null;
+
   return (
-    <div className="max-w-full">
+    <div className="w-48 max-w-xs">
       <Listbox value={selected.name} onChange={setSelected}>
         {({ open }) => (
           <>
             <Listbox.Label className="block text-sm font-medium text-gray-700">
-              Service
+              User
             </Listbox.Label>
             <div className="mt-1 relative">
               <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -51,16 +53,16 @@ export default function ServiceDropdown() {
                   static
                   className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                 >
-                  {services.map((service) => (
+                  {users.map((user) => (
                     <Listbox.Option
-                      key={service.uuid}
+                      key={user.uuid}
                       className={({ active }) =>
                         classNames(
                           active ? "text-white bg-indigo-600" : "text-gray-900",
                           "cursor-default select-none relative py-2 pl-3 pr-9"
                         )
                       }
-                      value={service}
+                      value={user}
                     >
                       {({ selected, active }) => (
                         <>
@@ -70,7 +72,7 @@ export default function ServiceDropdown() {
                               "block truncate"
                             )}
                           >
-                            {service.name}
+                            {user.name}
                           </span>
 
                           {selected ? (

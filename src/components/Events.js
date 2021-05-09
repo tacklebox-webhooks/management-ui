@@ -1,6 +1,7 @@
 import { events } from "../lib/db";
 import { formatDateTime } from "../lib/utils";
 import { CheckCircleIcon } from "@heroicons/react/outline";
+import Timeframe from "./Timeframe";
 
 export default function Events() {
   return (
@@ -29,7 +30,10 @@ export default function Events() {
                   >
                     Messages
                   </th>
-                  <th scope="col" className="relative px-3 py-3">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Idempotency Key
                   </th>
                 </tr>

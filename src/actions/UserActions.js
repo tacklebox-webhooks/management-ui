@@ -1,8 +1,13 @@
 import apiClient from "../lib/ApiClient";
 import * as types from "../constants/ActionTypes";
 
+// Old (users as array)
 export function fetchUsersSuccess(users) {
   return { type: types.FETCH_USERS_SUCCESS, users };
+}
+
+export function setUser(currentUser) {
+  return { type: types.SET_CURRENT_USER_SUCCESS, currentUser };
 }
 
 export function fetchUsers(serviceId) {
@@ -12,6 +17,29 @@ export function fetchUsers(serviceId) {
     );
   };
 }
+
+// New (users as object)
+// export function fetchUsersSuccess(userList, serviceId) {
+//   const users = {};
+//   users.id = serviceId;
+//   users.list = userList;
+//   return { type: types.FETCH_USERS_SUCCESS, users };
+// }
+
+// export function setUser(currentUser) {
+//   return { type: types.SET_CURRENT_USER_SUCCESS, currentUser };
+// }
+
+// export function fetchUsers(serviceId) {
+//   return function (dispatch, getState) {
+//     const state = getState();
+//     console.log("State within fetchUsers: ");
+//     console.log(state);
+//     apiClient.getUsers(serviceId, (users) =>
+//       dispatch(fetchUsersSuccess(users, serviceId))
+//     );
+//   };
+// }
 
 // export function fetchService(id) {
 //   return function (dispatch) {

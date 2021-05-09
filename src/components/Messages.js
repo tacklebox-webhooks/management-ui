@@ -23,7 +23,6 @@ export default function Messages() {
 
   return (
     <div>
-      <Timeframe />
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -43,18 +42,28 @@ export default function Messages() {
                     >
                       URL
                     </th>
-                    <th scope="col" className="relative px-3 py-3">
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Event Type
                     </th>
-                    <th scope="col" className="relative px-3 py-3">
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Status Code
                     </th>
-                    <th scope="col" className="relative px-3 py-3">
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Status
                     </th>
-                    <th scope="col" className="relative px-3 py-3">
-                      Resend
-                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    ></th>
                   </tr>
                 </thead>
                 <tbody>
