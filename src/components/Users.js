@@ -1,4 +1,3 @@
-// import { users } from "../lib/db";
 import { useState, useEffect } from "react";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,14 +7,6 @@ import * as actions from "../actions/UserActions";
 export default function Users() {
   const currentService = useSelector((state) => state.currentService);
   const users = useSelector((state) => state.users[currentService.uuid]);
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (users.length === 0) {
-  //     dispatch(actions.fetchUsers(currentService.uuid));
-  //   }
-  // }, [dispatch, currentService]);
 
   return (
     <div className="flex flex-col">

@@ -7,6 +7,7 @@ import Timeframe from "./Timeframe";
 import * as actions from "../actions/UserActions";
 
 const userDropdownPages = ["Endpoints", "Events", "Messages"];
+const timeframePages = ["Dashboard"];
 
 const Header = ({ page }) => {
   const selected = useSelector((state) => state.currentService);
@@ -33,15 +34,9 @@ const Header = ({ page }) => {
       {userDropdownPages.includes(page) ? (
         <GridItem Component={UserDropdown} />
       ) : null}
-      {/* <div className="col-span-1 bg-white">
-        <dt className="text-sm font-medium text-gray-500 truncate"></dt>
-        <dd className="mt-1">
-          <Timeframe />
-        </dd>
-        <dd className="mt-1">
-          <UserDropdown />
-        </dd>
-      </div> */}
+      {timeframePages.includes(page) ? (
+        <GridItem Component={Timeframe} />
+      ) : null}
     </dl>
   );
 };

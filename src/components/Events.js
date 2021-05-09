@@ -1,5 +1,4 @@
-// import { events } from "../lib/db";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/EventActions";
 
@@ -13,7 +12,6 @@ export default function Events() {
     if (!currentUser.uuid || !currentService.uuid) {
       return;
     }
-    console.log("Fetching events list");
     dispatch(actions.fetchEvents(currentService.uuid, currentUser.uuid));
   }, [dispatch, currentUser.uuid]);
 

@@ -1,5 +1,4 @@
-// import { endpoints } from "../lib/db";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/EndpointActions";
@@ -14,7 +13,6 @@ export default function Endpoints() {
     if (!currentUser.uuid || !currentService.uuid) {
       return;
     }
-    console.log("Fetching endpoints list");
     dispatch(actions.fetchEndpoints(currentService.uuid, currentUser.uuid));
   }, [dispatch, currentUser.uuid]);
 

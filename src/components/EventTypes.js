@@ -1,5 +1,4 @@
-// import { eventTypes } from "../lib/db";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/EventTypeActions";
@@ -13,6 +12,9 @@ export default function EventTypes() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!currentService.uuid) {
+      return;
+    }
     dispatch(actions.fetchEventTypes(currentService.uuid));
   }, [dispatch, currentService.uuid]);
 

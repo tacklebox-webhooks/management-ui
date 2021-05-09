@@ -1,8 +1,6 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-// import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/UserActions";
 
@@ -11,14 +9,10 @@ function classNames(...classes) {
 }
 
 export default function UserDropdown() {
-  const currentService = useSelector((state) => state.currentService); // New
+  const currentService = useSelector((state) => state.currentService);
   const selected = useSelector((state) => state.currentUser);
-  // const users = useSelector((state) => state.users); // Old
-  const users = useSelector((state) => state.users[currentService.uuid]); // New
+  const users = useSelector((state) => state.users[currentService.uuid]);
   const dispatch = useDispatch();
-
-  // console.log("CurrentService within UserDropdown is");
-  // console.log(currentService);
 
   const setSelected = (user) => {
     console.log(user);

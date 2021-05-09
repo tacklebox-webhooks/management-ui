@@ -19,7 +19,6 @@ import Events from "./components/Events";
 import Messages from "./components/Messages";
 import DesktopNav from "./components/DesktopNav";
 import MobileNav from "./components/MobileNav";
-import ServiceDropdown from "./components/ServiceDropdown";
 import Header from "./components/Header";
 
 const navigation = [
@@ -40,23 +39,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-// const serviceId = "5c306f02-0825-4aff-bc8e-173b9d92c4bc";
-// const userId = "c86adfd8-1fdf-436c-b741-279ce8871731";
-
 export default function App() {
-  console.log("Render");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [page, setPage] = useState("");
-  // const [currentServiceId, setCurrentServiceId] = useState(
-  //   "5c306f02-0825-4aff-bc8e-173b9d92c4bc"
-  // );
-  // const [currentServiceId, setCurrentServiceId] = useState("");
 
   const location = useLocation();
 
   // Update nav bar and page title
   useEffect(() => {
-    console.log("Updating title");
     const newPage = navigation.find((item) => item.path === location.pathname);
     const oldPage = navigation.find((item) => item.current === true);
     oldPage.current = false;
@@ -64,12 +54,9 @@ export default function App() {
     setPage(newPage.name);
   }, [location.pathname]);
 
-  // const services = useSelector((state) => state.services);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Loading services");
     dispatch(actions.fetchServices());
   }, [dispatch]);
 
@@ -95,12 +82,6 @@ export default function App() {
         <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
           <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              {/* <h1 className="inline-block text-2xl font-semibold text-gray-900">
-                {page}
-              </h1>
-              <div className="inline-block float-right">
-                <ServiceDropdown />
-              </div> */}
               <Header page={page} />
             </div>
             <div className="max-w-7xl mt-4 mx-auto px-4 sm:px-6 md:px-8">

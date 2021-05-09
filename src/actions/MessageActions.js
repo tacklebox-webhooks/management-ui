@@ -17,10 +17,8 @@ export function fetchMessages(serviceId, userId) {
     const state = getState();
 
     if (state.messages.hasOwnProperty(userId)) {
-      console.log("No need to fetch, messages for given userId already exists");
-      return; // Not sure if I have to dispatch instead of return
+      return;
     }
-    console.log("Fetching messages");
 
     apiClient.getMessages(serviceId, userId, (messages) =>
       dispatch(fetchMessagesSuccess(messages, userId))

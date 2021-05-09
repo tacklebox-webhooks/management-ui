@@ -1,5 +1,4 @@
-// import { messages } from "../lib/db";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/outline";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +14,6 @@ export default function Messages() {
     if (!currentUser.uuid || !currentService.uuid) {
       return;
     }
-    console.log("Fetching messages list");
     dispatch(actions.fetchMessages(currentService.uuid, currentUser.uuid));
   }, [dispatch, currentUser.uuid]);
 

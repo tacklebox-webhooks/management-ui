@@ -17,8 +17,6 @@ export function fetchUsers(serviceId) {
     const state = getState();
 
     if (state.users.hasOwnProperty(serviceId)) {
-      console.log("No need to fetch, users for given serviceId already exists");
-      // Need to add case where users is empty!
       dispatch(setUser(state.users[serviceId][0]));
       return;
     }

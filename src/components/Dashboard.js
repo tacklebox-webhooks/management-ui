@@ -3,12 +3,10 @@ import EventsChartDoughnut from "./EventsChartDoughnut";
 import StatSummary from "./StatSummary";
 import EndpointsChartBar from "./EndpointsChartBar";
 import ResponseStatusChart from "./ResponseStatusChart";
-import Timeframe from "./Timeframe";
 
 export default function Dashboard() {
   return (
     <div>
-      {/* <Timeframe /> */}
       <StatSummary />
       <div>
         <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">

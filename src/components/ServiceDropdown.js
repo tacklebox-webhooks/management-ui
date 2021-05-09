@@ -1,8 +1,6 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-// import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/ServiceActions";
 
@@ -14,8 +12,6 @@ export default function ServiceDropdown() {
   const selected = useSelector((state) => state.currentService);
   const services = useSelector((state) => state.services);
   const dispatch = useDispatch();
-
-  console.log(selected);
 
   const setSelected = (service) => {
     dispatch(actions.setService(service));
