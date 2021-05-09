@@ -2,11 +2,13 @@
 import { useState, useEffect } from "react";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
+import UserList from "./UserList";
 import * as actions from "../actions/UserActions";
 
 export default function Users() {
-  const users = useSelector((state) => state.users);
   const currentService = useSelector((state) => state.currentService);
+  const users = useSelector((state) => state.users[currentService.uuid]);
+
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -49,7 +51,8 @@ export default function Users() {
                   ></th>
                 </tr>
               </thead>
-              <tbody>
+              <UserList users={users} />
+              {/* <tbody>
                 {users.map((user, userIdx) => (
                   <tr
                     key={user.uuid}
@@ -72,7 +75,7 @@ export default function Users() {
                     </td>
                   </tr>
                 ))}
-              </tbody>
+              </tbody> */}
             </table>
           </div>
         </div>

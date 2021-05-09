@@ -11,17 +11,23 @@ function classNames(...classes) {
 }
 
 export default function UserDropdown() {
-  // const currentService = useSelector((state) => state.currentService); // New
+  const currentService = useSelector((state) => state.currentService); // New
   const selected = useSelector((state) => state.currentUser);
-  const users = useSelector((state) => state.users); // Old
-  // const users = useSelector((state) => state.users[currentService.uuid]); // New
+  // const users = useSelector((state) => state.users); // Old
+  const users = useSelector((state) => state.users[currentService.uuid]); // New
   const dispatch = useDispatch();
 
+  // console.log("CurrentService within UserDropdown is");
+  // console.log(currentService);
+
   const setSelected = (user) => {
+    console.log(user);
     dispatch(actions.setUser(user));
   };
 
-  // return null;
+  if (!users) {
+    return null;
+  }
 
   return (
     <div className="w-48 max-w-xs">

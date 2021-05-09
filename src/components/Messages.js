@@ -4,22 +4,24 @@ import { CheckCircleIcon } from "@heroicons/react/outline";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/MessageActions";
-import Timeframe from "./Timeframe";
-
-const serviceId = "5c306f02-0825-4aff-bc8e-173b9d92c4bc";
-const userId = "c86adfd8-1fdf-436c-b741-279ce8871731";
 
 export default function Messages() {
-  const messages = useSelector((state) => state.messages);
-  console.log("Messages is:");
-  console.log(messages);
+  const currentService = useSelector((state) => state.currentService);
+  const currentUser = useSelector((state) => state.currentUser);
+  const messages = useSelector((state) => state.messages[currentUser.uuid]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (messages.length === 0) {
-      dispatch(actions.fetchMessages(serviceId, userId));
+    if (!currentUser.uuid || !currentService.uuid) {
+      return;
     }
-  }, [dispatch]);
+    console.log("Fetching messages list");
+    dispatch(actions.fetchMessages(currentService.uuid, currentUser.uuid));
+  }, [dispatch, currentUser.uuid]);
+
+  if (!messages) {
+    return null;
+  }
 
   return (
     <div>

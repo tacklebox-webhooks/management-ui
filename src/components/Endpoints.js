@@ -1,16 +1,26 @@
-import { endpoints } from "../lib/db";
+// import { endpoints } from "../lib/db";
+import { useState, useEffect } from "react";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/EndpointActions";
 
 export default function Endpoints() {
-  // const endpoints = useSelector((state) => state.endpoints);
-  // const currentService = useSelector((state) => state.currentService);
-  // const dispatch = useDispatch();
+  const currentService = useSelector((state) => state.currentService);
+  const currentUser = useSelector((state) => state.currentUser);
+  const endpoints = useSelector((state) => state.endpoints[currentUser.uuid]);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(actions.fetchEventTypes(currentService.uuid));
-  // }, [dispatch, currentService]);
+  useEffect(() => {
+    if (!currentUser.uuid || !currentService.uuid) {
+      return;
+    }
+    console.log("Fetching endpoints list");
+    dispatch(actions.fetchEndpoints(currentService.uuid, currentUser.uuid));
+  }, [dispatch, currentUser.uuid]);
+
+  if (!endpoints) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col">

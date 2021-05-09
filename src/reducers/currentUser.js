@@ -3,8 +3,8 @@ import * as types from "../constants/ActionTypes";
 const currentUser = (state = { name: "" }, action) => {
   switch (action.type) {
     case types.FETCH_USERS_SUCCESS:
-      if (action.users.length > 0) {
-        return action.users[0];
+      if (action.users.list.length > 0) {
+        return action.users.list[0];
       } else {
         return state;
       }

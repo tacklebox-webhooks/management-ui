@@ -5,13 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/EventTypeActions";
 
 export default function EventTypes() {
-  const eventTypes = useSelector((state) => state.eventTypes);
   const currentService = useSelector((state) => state.currentService);
+  const eventTypes = useSelector(
+    (state) => state.eventTypes[currentService.uuid]
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(actions.fetchEventTypes(currentService.uuid));
-  }, [dispatch, currentService]);
+  }, [dispatch, currentService.uuid]);
+
+  if (!eventTypes) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col">

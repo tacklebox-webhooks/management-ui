@@ -1,9 +1,11 @@
 import * as types from "../constants/ActionTypes";
 
-const messages = (state = [], action) => {
+const messages = (state = {}, action) => {
   switch (action.type) {
     case types.FETCH_MESSAGES_SUCCESS:
-      return action.messages;
+      const newState = { ...state };
+      newState[action.messages.id] = action.messages.list;
+      return newState;
     default:
       return state;
   }

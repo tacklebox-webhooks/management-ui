@@ -1,9 +1,26 @@
-import { events } from "../lib/db";
-import { formatDateTime } from "../lib/utils";
-import { CheckCircleIcon } from "@heroicons/react/outline";
-import Timeframe from "./Timeframe";
+// import { events } from "../lib/db";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../actions/EventActions";
 
 export default function Events() {
+  const currentService = useSelector((state) => state.currentService);
+  const currentUser = useSelector((state) => state.currentUser);
+  const events = useSelector((state) => state.events[currentUser.uuid]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!currentUser.uuid || !currentService.uuid) {
+      return;
+    }
+    console.log("Fetching events list");
+    dispatch(actions.fetchEvents(currentService.uuid, currentUser.uuid));
+  }, [dispatch, currentUser.uuid]);
+
+  if (!events) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
