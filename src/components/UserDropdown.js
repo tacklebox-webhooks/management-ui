@@ -15,7 +15,6 @@ export default function UserDropdown() {
   const dispatch = useDispatch();
 
   const setSelected = (user) => {
-    console.log(user);
     dispatch(actions.setUser(user));
   };
 

@@ -4,20 +4,38 @@ import ServiceDropdown from "./ServiceDropdown";
 import UserDropdown from "./UserDropdown";
 import GridItem from "./GridItem";
 import Timeframe from "./Timeframe";
-import * as actions from "../actions/UserActions";
+import * as userActions from "../actions/UserActions";
+import * as eventTypeActions from "../actions/EventTypeActions";
+import * as endpointActions from "../actions/EndpointActions";
+import * as eventActions from "../actions/EventActions";
+import * as messageActions from "../actions/MessageActions";
 
 const userDropdownPages = ["Endpoints", "Events", "Messages"];
 const timeframePages = ["Dashboard"];
 
 const Header = ({ page }) => {
-  const selected = useSelector((state) => state.currentService);
+  const currentService = useSelector((state) => state.currentService);
+  const currentUser = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (selected.uuid) {
-      dispatch(actions.fetchUsers(selected.uuid));
+    if (currentService.uuid) {
+      dispatch(userActions.fetchUsers(currentService.uuid));
+      dispatch(eventTypeActions.fetchEventTypes(currentService.uuid));
     }
-  }, [dispatch, selected.uuid]);
+  }, [dispatch, currentService.uuid]);
+
+  useEffect(() => {
+    if (currentService.uuid && currentUser.uuid) {
+      dispatch(
+        endpointActions.fetchEndpoints(currentService.uuid, currentUser.uuid)
+      );
+      dispatch(eventActions.fetchEvents(currentService.uuid, currentUser.uuid));
+      dispatch(
+        messageActions.fetchMessages(currentService.uuid, currentUser.uuid)
+      );
+    }
+  }, [dispatch, currentUser.uuid]);
 
   return (
     <dl className="grid grid-cols-1 gap-5 sm:grid-cols-5">
