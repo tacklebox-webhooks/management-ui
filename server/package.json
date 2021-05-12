@@ -1,0 +1,15 @@
+{
+  "name": "tacklebox-server",
+  "version": "1.0.0",
+  "description": "management UI for tacklebox webhook service",
+  "main": "index.js",
+  "scripts": {
+    "build:ui": "rm -rf build && cd ../client/ && npm run build --prod && cp -r build ../server",
+    "deploy": "npm run build:ui && node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
