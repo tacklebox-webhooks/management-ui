@@ -1,33 +1,33 @@
 import { Doughnut } from "react-chartjs-2";
-import { messages } from "../lib/db";
+// import { messages } from "../lib/db";
 
-const countStatuses = () => {
-  let statusCounts = {};
+// const countStatuses = () => {
+//   let statusCounts = {};
 
-  messages.forEach((message) => {
-    let statusCode = Math.floor(message.status_code / 100) * 100;
-    if (statusCounts[statusCode]) {
-      statusCounts[statusCode] += 1;
-    } else {
-      statusCounts[statusCode] = 1;
-    }
-  });
+//   messages.forEach((message) => {
+//     let statusCode = Math.floor(message.status_code / 100) * 100;
+//     if (statusCounts[statusCode]) {
+//       statusCounts[statusCode] += 1;
+//     } else {
+//       statusCounts[statusCode] = 1;
+//     }
+//   });
 
-  let statuses = Object.keys(statusCounts);
+//   let statuses = Object.keys(statusCounts);
 
-  statuses.sort((a, b) => {
-    return statusCounts[b] - statusCounts[a];
-  });
+//   statuses.sort((a, b) => {
+//     return statusCounts[b] - statusCounts[a];
+//   });
 
-  let counts = statuses.map((code) => statusCounts[code]);
+//   let counts = statuses.map((code) => statusCounts[code]);
 
-  const restCount = statuses
-    .slice(3)
-    .reduce((acc, currentValue) => acc + statusCounts[currentValue], 0);
-  counts["Other"] = restCount;
+//   const restCount = statuses
+//     .slice(3)
+//     .reduce((acc, currentValue) => acc + statusCounts[currentValue], 0);
+//   counts["Other"] = restCount;
 
-  return { statuses, counts };
-};
+//   return { statuses, counts };
+// };
 
 const getStatusColor = (code) => {
   if (code === "Other") {
