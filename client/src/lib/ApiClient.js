@@ -61,6 +61,13 @@ const apiClient = {
       .then(callback)
       .catch(logError);
   },
+  getStats: function (serviceId, callback) {
+    return axios
+      .get(`${routes.BASE_URL}/${serviceId}/stats`)
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  },
 };
 
 export default apiClient;

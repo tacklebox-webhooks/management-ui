@@ -9,6 +9,7 @@ import * as eventTypeActions from "../actions/EventTypeActions";
 import * as endpointActions from "../actions/EndpointActions";
 import * as eventActions from "../actions/EventActions";
 import * as messageActions from "../actions/MessageActions";
+import * as statActions from "../actions/StatActions";
 
 const userDropdownPages = ["Endpoints", "Events", "Messages"];
 const timeframePages = ["Dashboard"];
@@ -22,6 +23,7 @@ const Header = ({ page }) => {
     if (currentService.uuid) {
       dispatch(userActions.fetchUsers(currentService.uuid));
       dispatch(eventTypeActions.fetchEventTypes(currentService.uuid));
+      dispatch(statActions.fetchStats(currentService.uuid));
     }
   }, [dispatch, currentService.uuid]);
 

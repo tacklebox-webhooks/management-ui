@@ -16,7 +16,10 @@ export function fetchUsers(serviceId) {
   return function (dispatch, getState) {
     const state = getState();
 
-    if (state.users.hasOwnProperty(serviceId)) {
+    if (
+      state.users.hasOwnProperty(serviceId) &&
+      state.users[serviceId].length > 0
+    ) {
       dispatch(setUser(state.users[serviceId][0]));
       return;
     }
