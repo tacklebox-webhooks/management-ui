@@ -7,6 +7,7 @@ import eventTypes from "./eventTypes";
 import endpoints from "./endpoints";
 import events from "./events";
 import messages from "./messages";
+import stats from "./stats";
 
 const rootReducer = combineReducers({
   services,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   messages,
   currentService,
   currentUser,
+  stats,
 });
 
 export default rootReducer;
