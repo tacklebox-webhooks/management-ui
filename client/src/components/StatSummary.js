@@ -1,6 +1,11 @@
 import { useSelector } from "react-redux";
 import StatItem from "./StatItem";
 
+const calculateFailureRate = (failures, total) => {
+  const rate = (failures / total) * 100;
+  return rate.toFixed(2);
+};
+
 const StatSummary = () => {
   const currentService = useSelector((state) => state.currentService);
   const stats = useSelector((state) => state.stats[currentService.uuid]);
@@ -21,18 +26,22 @@ const StatSummary = () => {
     statsArray[2].stat = stats.events;
     statsArray[3].stat = stats.messages;
 
-    // if (stats.failedMessages !== 0) {
-    //   failureRate = `${stats.failedMessages / stats.messages}%`;
-    // } else {
-    //   failureRate = "0.00%"
-    // }
+    if (stats.failedMessages !== "0") {
+      failureRate = `${calculateFailureRate(
+        Number(stats.failedMessages),
+        Number(stats.messages)
+      )}%`;
+      hasFailures = true;
+    } else {
+      failureRate = "0.00%";
+    }
   }
 
   return (
     <div>
       <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-5">
-        {statsArray.map((item) => (
-          <StatItem item={item} />
+        {statsArray.map((item, idx) => (
+          <StatItem key={idx} item={item} />
         ))}
         <div
           className={
@@ -42,7 +51,7 @@ const StatSummary = () => {
           }
         >
           <dt className="text-sm font-medium text-gray-800 truncate">
-            Failed Messages
+            Message Failure Rate
           </dt>
           <dd
             className={
