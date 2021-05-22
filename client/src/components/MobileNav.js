@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const MobileNav = ({ sidebarOpen, setSidebarOpen, navigation, classNames }) => {
   return (
@@ -33,7 +34,7 @@ const MobileNav = ({ sidebarOpen, setSidebarOpen, navigation, classNames }) => {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-gray-800">
             <Transition.Child
               as={Fragment}
               enter="ease-in-out duration-300"
@@ -55,11 +56,7 @@ const MobileNav = ({ sidebarOpen, setSidebarOpen, navigation, classNames }) => {
             </Transition.Child>
             <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex items-center px-4">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                  alt="Workflow"
-                />
+                <img className="h-8 w-auto" src={logo} alt="Tacklebox" />
               </div>
               <nav className="mt-5 px-2 space-y-1">
                 {navigation.map((item) => (
@@ -68,16 +65,16 @@ const MobileNav = ({ sidebarOpen, setSidebarOpen, navigation, classNames }) => {
                     key={item.name}
                     className={classNames(
                       item.current
-                        ? "bg-gray-100 text-gray-900"
-                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
                   >
                     <item.icon
                       className={classNames(
                         item.current
-                          ? "text-gray-500"
-                          : "text-gray-400 group-hover:text-gray-500",
+                          ? "text-gray-300"
+                          : "text-gray-400 group-hover:text-gray-300",
                         "mr-3 h-6 w-6"
                       )}
                       aria-hidden="true"
@@ -86,27 +83,6 @@ const MobileNav = ({ sidebarOpen, setSidebarOpen, navigation, classNames }) => {
                   </Link>
                 ))}
               </nav>
-            </div>
-            <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-              <a href="#" className="flex-shrink-0 group block">
-                <div className="flex items-center">
-                  <div>
-                    <img
-                      className="inline-block h-10 w-10 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                      Tom Cook
-                    </p>
-                    <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                      View profile
-                    </p>
-                  </div>
-                </div>
-              </a>
             </div>
           </div>
         </Transition.Child>

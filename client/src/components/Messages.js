@@ -102,7 +102,7 @@ export default function Messages() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
                         <button
-                          className="bg-transparent hover:bg-blue-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg"
+                          className="bg-transparent hover:bg-gray-500 text-gray-500 font-semibold hover:text-white py-1 px-2 border border-gray-800 hover:border-transparent rounded-lg"
                           onClick={() =>
                             resendMessage(
                               currentService.uuid,
