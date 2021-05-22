@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "./actions/ServiceActions";
-
 import {
   CalendarIcon,
   FolderIcon,
@@ -9,6 +8,7 @@ import {
   InboxIcon,
   MenuIcon,
   UsersIcon,
+  FilterIcon,
 } from "@heroicons/react/outline";
 import { Switch, Route, useLocation } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
@@ -27,7 +27,7 @@ const navigation = [
   {
     name: "Event Types",
     path: "/event_types",
-    icon: CalendarIcon,
+    icon: FilterIcon,
     current: false,
   },
   { name: "Endpoints", path: "/endpoints", icon: FolderIcon, current: false },
@@ -61,7 +61,7 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <div className="h-screen flex overflow-hidden bg-white">
+    <div className="h-screen flex overflow-hidden bg-gray-100">
       <MobileNav
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
@@ -86,12 +86,12 @@ export default function App() {
             </div>
             <div className="max-w-7xl mt-4 mx-auto px-4 sm:px-6 md:px-8">
               <Switch>
-                <Route path="/" exact component={Dashboard} />
-                <Route path="/users" exact component={Users} />
-                <Route path="/event_types" exact component={EventTypes} />
-                <Route path="/endpoints" component={Endpoints} />
-                <Route path="/events" component={Events} />
-                <Route path="/messages" component={Messages} />
+                <Route exact path="/" component={Dashboard} />
+                <Route exact path="/users" component={Users} />
+                <Route exact path="/event_types" component={EventTypes} />
+                <Route exact path="/endpoints" component={Endpoints} />
+                <Route exact path="/events" component={Events} />
+                <Route exact path="/messages" component={Messages} />
               </Switch>
             </div>
           </div>

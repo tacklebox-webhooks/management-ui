@@ -41,7 +41,7 @@ const Header = ({ page }) => {
 
   return (
     <dl className="grid grid-cols-1 gap-5 sm:grid-cols-5">
-      <div className="col-span-1 bg-white overflow-hidden">
+      <div className="col-span-1 bg-gray-100 overflow-hidden">
         <dt className="text-sm font-medium text-gray-500"></dt>
         <dd className="mt-1">
           <h1 className="text-3xl font-semibold text-gray-900">{page}</h1>
