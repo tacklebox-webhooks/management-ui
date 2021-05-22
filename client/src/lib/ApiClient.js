@@ -68,6 +68,15 @@ const apiClient = {
       .then(callback)
       .catch(logError);
   },
+  resendMessage: function (serviceId, userId, messageId) {
+    return axios
+      .post(
+        `${routes.BASE_URL}/${serviceId}/users/${userId}/messages/${messageId}/resend`
+      )
+      .then(unwrapData)
+      .then()
+      .catch(logError);
+  },
 };
 
 export default apiClient;

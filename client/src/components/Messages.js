@@ -3,6 +3,11 @@ import { CheckCircleIcon } from "@heroicons/react/outline";
 import { formatDateTime } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../actions/MessageActions";
+import apiClient from "../lib/ApiClient";
+
+const resendMessage = (serviceId, userId, messageId) => {
+  apiClient.resendMessage(serviceId, userId, messageId);
+};
 
 export default function Messages() {
   const currentService = useSelector((state) => state.currentService);
@@ -40,7 +45,7 @@ export default function Messages() {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      URL
+                      Endpoint URL
                     </th>
                     <th
                       scope="col"
@@ -96,7 +101,18 @@ export default function Messages() {
                         />
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
-                        Resend
+                        <button
+                          className="bg-transparent hover:bg-blue-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg"
+                          onClick={() =>
+                            resendMessage(
+                              currentService.uuid,
+                              currentUser.uuid,
+                              message.uuid
+                            )
+                          }
+                        >
+                          Resend
+                        </button>
                       </td>
                     </tr>
                   ))}
