@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "./actions/ServiceActions";
 import {
   CalendarIcon,
@@ -8,6 +8,7 @@ import {
   InboxIcon,
   MenuIcon,
   UsersIcon,
+  FilterIcon,
 } from "@heroicons/react/outline";
 import { Switch, Route, useLocation } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
@@ -26,7 +27,7 @@ const navigation = [
   {
     name: "Event Types",
     path: "/event_types",
-    icon: CalendarIcon,
+    icon: FilterIcon,
     current: false,
   },
   { name: "Endpoints", path: "/endpoints", icon: FolderIcon, current: false },

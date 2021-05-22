@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import StatItem from "./StatItem";
 
 const StatSummary = () => {
   const currentService = useSelector((state) => state.currentService);
@@ -11,41 +12,47 @@ const StatSummary = () => {
     { name: "Messages Sent", stat: "-" },
   ];
 
+  let hasFailures;
+  let failureRate = "-";
+
   if (stats) {
     statsArray[0].stat = stats.users;
     statsArray[1].stat = stats.endpoints;
     statsArray[2].stat = stats.events;
     statsArray[3].stat = stats.messages;
-  }
 
-  // const statsArray = [
-  //   { name: "Users", stat: stats.users },
-  //   { name: "Endpoints", stat: stats.endpoints },
-  //   { name: "Events Created", stat: stats.events },
-  //   { name: "Messages Sent", stat: stats.messages },
-  // ];
+    // if (stats.failedMessages !== 0) {
+    //   failureRate = `${stats.failedMessages / stats.messages}%`;
+    // } else {
+    //   failureRate = "0.00%"
+    // }
+  }
 
   return (
     <div>
       <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-5">
         {statsArray.map((item) => (
-          <div
-            key={item.name}
-            className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6"
-          >
-            <dt className="text-sm font-medium text-gray-500 truncate">
-              {item.name}
-            </dt>
-            <dd className="mt-1 text-3xl font-semibold text-gray-900">
-              {item.stat}
-            </dd>
-          </div>
+          <StatItem item={item} />
         ))}
-        <div className="px-4 py-5 bg-red-100 shadow rounded-lg overflow-hidden sm:p-6">
+        <div
+          className={
+            hasFailures
+              ? "px-4 py-5 bg-red-100 shadow rounded-lg overflow-hidden sm:p-6"
+              : "px-4 py-5 bg-green-100 shadow rounded-lg overflow-hidden sm:p-6"
+          }
+        >
           <dt className="text-sm font-medium text-gray-800 truncate">
             Failed Messages
           </dt>
-          <dd className="mt-1 text-3xl font-semibold text-red-800">0.00%</dd>
+          <dd
+            className={
+              hasFailures
+                ? "mt-1 text-3xl font-semibold text-red-800"
+                : "mt-1 text-3xl font-semibold text-green-800"
+            }
+          >
+            {failureRate}
+          </dd>
         </div>
       </dl>
     </div>
