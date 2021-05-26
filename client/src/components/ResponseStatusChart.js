@@ -1,33 +1,4 @@
 import { Doughnut } from "react-chartjs-2";
-// import { messages } from "../lib/db";
-
-// const countStatuses = () => {
-//   let statusCounts = {};
-
-//   messages.forEach((message) => {
-//     let statusCode = Math.floor(message.status_code / 100) * 100;
-//     if (statusCounts[statusCode]) {
-//       statusCounts[statusCode] += 1;
-//     } else {
-//       statusCounts[statusCode] = 1;
-//     }
-//   });
-
-//   let statuses = Object.keys(statusCounts);
-
-//   statuses.sort((a, b) => {
-//     return statusCounts[b] - statusCounts[a];
-//   });
-
-//   let counts = statuses.map((code) => statusCounts[code]);
-
-//   const restCount = statuses
-//     .slice(3)
-//     .reduce((acc, currentValue) => acc + statusCounts[currentValue], 0);
-//   counts["Other"] = restCount;
-
-//   return { statuses, counts };
-// };
 
 const getStatusColor = (code) => {
   if (code === "Other") {
@@ -51,13 +22,19 @@ const getStatusColor = (code) => {
   }
 };
 
-const ResponseStatusChart = () => {
-  // const { statuses, counts } = countStatuses();
-  const { statuses, counts } = {
-    statuses: [200, 400, 500],
-    counts: [230651, 1446, 2686],
-  };
-  const statusColors = statuses.map((status) => getStatusColor(status));
+const calculateLabels = (messages) => {
+  return Object.keys(messages);
+};
+
+const calculateData = (messages) => {
+  return Object.keys(messages).map((endpoint) => messages[endpoint]);
+};
+
+const ResponseStatusChart = ({ messagesByStatus }) => {
+  const labels = calculateLabels(messagesByStatus);
+  const messageData = calculateData(messagesByStatus);
+
+  const statusColors = labels.map((status) => getStatusColor(status));
 
   const options = {
     responsive: true,
@@ -73,11 +50,11 @@ const ResponseStatusChart = () => {
   };
 
   const data = {
-    labels: [...statuses],
+    labels,
     datasets: [
       {
         label: "Events By Type",
-        data: counts,
+        data: messageData,
         backgroundColor: statusColors,
         hoverOffset: 4,
       },

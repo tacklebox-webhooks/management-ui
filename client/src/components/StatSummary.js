@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import StatItem from "./StatItem";
 
 const calculateFailureRate = (failures, total) => {
@@ -6,10 +5,7 @@ const calculateFailureRate = (failures, total) => {
   return rate.toFixed(2);
 };
 
-const StatSummary = () => {
-  const currentService = useSelector((state) => state.currentService);
-  const stats = useSelector((state) => state.stats[currentService.uuid]);
-
+const StatSummary = ({ stats }) => {
   const statsArray = [
     { name: "Users", stat: "-" },
     { name: "Endpoints", stat: "-" },
@@ -23,13 +19,13 @@ const StatSummary = () => {
   if (stats) {
     statsArray[0].stat = stats.users;
     statsArray[1].stat = stats.endpoints;
-    statsArray[2].stat = stats.events;
-    statsArray[3].stat = stats.messages;
+    statsArray[2].stat = stats.events.total;
+    statsArray[3].stat = stats.messages.total;
 
-    if (stats.failedMessages !== "0") {
+    if (stats.messages.failed !== "0") {
       failureRate = `${calculateFailureRate(
-        Number(stats.failedMessages),
-        Number(stats.messages)
+        Number(stats.messages.failed),
+        Number(stats.messages.total)
       )}%`;
       hasFailures = true;
     } else {

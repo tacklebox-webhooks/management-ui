@@ -1,22 +1,15 @@
 import { Bar } from "react-chartjs-2";
 
-const EndpointsChartBar = () => {
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
+const EndpointsChartBar = ({ eventsByUser }) => {
+  const labels = calculateLabels(eventsByUser);
+  const eventData = calculateData(eventsByUser);
 
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "Events By Endpoint",
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: "Events By User",
+        data: eventData,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(255, 159, 64, 0.2)",
@@ -41,6 +34,14 @@ const EndpointsChartBar = () => {
   };
 
   return <Bar data={data} />;
+};
+
+const calculateLabels = (events) => {
+  return events.map((event) => event.user);
+};
+
+const calculateData = (events) => {
+  return events.map((event) => parseInt(event.count, 10));
 };
 
 export default EndpointsChartBar;

@@ -1,6 +1,9 @@
 import { Doughnut } from "react-chartjs-2";
 
-const EventsChartDoughnut = () => {
+const EventsChartDoughnut = ({ eventsByType }) => {
+  const labels = calculateLabels(eventsByType);
+  const eventData = calculateData(eventsByType);
+
   const options = {
     responsive: true,
     plugins: {
@@ -15,11 +18,11 @@ const EventsChartDoughnut = () => {
   };
 
   const data = {
-    labels: ["todo_created", "todo_deleted", "todo_updated", "Other"],
+    labels,
     datasets: [
       {
         label: "Events By Type",
-        data: [300, 100, 60, 25],
+        data: eventData,
         backgroundColor: [
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
@@ -32,6 +35,14 @@ const EventsChartDoughnut = () => {
   };
 
   return <Doughnut data={data} options={options} />;
+};
+
+const calculateLabels = (events) => {
+  return events.map((event) => event.type);
+};
+
+const calculateData = (events) => {
+  return events.map((event) => parseInt(event.count, 10));
 };
 
 export default EventsChartDoughnut;
