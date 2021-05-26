@@ -22,7 +22,7 @@ const StatSummary = ({ stats }) => {
     statsArray[2].stat = stats.events.total;
     statsArray[3].stat = stats.messages.total;
 
-    if (stats.messages.failed !== "0") {
+    if (stats.messages.failed !== 0) {
       failureRate = `${calculateFailureRate(
         Number(stats.messages.failed),
         Number(stats.messages.total)
