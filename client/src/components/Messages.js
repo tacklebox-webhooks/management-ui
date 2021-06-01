@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { CheckCircleIcon } from "@heroicons/react/outline";
-import { formatDateTime } from "../lib/utils";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../actions/MessageActions";
-import apiClient from "../lib/ApiClient";
+import { useEffect } from 'react';
+import { CheckCircleIcon } from '@heroicons/react/outline';
+import { formatDateTime } from '../lib/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../actions/MessageActions';
+import apiClient from '../lib/ApiClient';
 
 const resendMessage = (serviceId, userId, messageId) => {
   apiClient.resendMessage(serviceId, userId, messageId);
@@ -76,7 +76,7 @@ export default function Messages() {
                     <tr
                       key={message.uuid}
                       className={
-                        messageIdx % 2 === 0 ? "bg-white" : "bg-gray-50"
+                        messageIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
                       }
                     >
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -86,7 +86,7 @@ export default function Messages() {
                         {message.endpoint}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        todo_created
+                        {message.event_type}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {message.status_code}
@@ -95,8 +95,8 @@ export default function Messages() {
                         <CheckCircleIcon
                           className={
                             message.delivered
-                              ? "h-6 w-6 text-green-600"
-                              : "h-6 w-6 text-red-600"
+                              ? 'h-6 w-6 text-green-600'
+                              : 'h-6 w-6 text-red-600'
                           }
                         />
                       </td>
