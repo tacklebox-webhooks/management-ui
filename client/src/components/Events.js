@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../actions/EventActions";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { formatDateTime } from '../lib/utils';
+import * as actions from '../actions/EventActions';
 
 export default function Events() {
   const currentService = useSelector((state) => state.currentService);
@@ -57,16 +58,16 @@ export default function Events() {
                 {events.map((event, eventIdx) => (
                   <tr
                     key={event.uuid}
-                    className={eventIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                    className={eventIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {new Date().toISOString()}
+                      {formatDateTime(event.created_at)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {event.event_type_name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
-                      20
+                      {event.count}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {event.idempotency_key}

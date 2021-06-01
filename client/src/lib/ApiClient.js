@@ -51,7 +51,7 @@ const apiClient = {
   },
   getEvents: function (serviceId, userId, callback) {
     return axios
-      .get(`${routes.BASE_URL}/${serviceId}/users/${userId}/events`)
+      .get(`${routes.BASE_URL}/${serviceId}/stats?type=events&user=${userId}`)
       .then(unwrapData)
       .then(callback)
       .catch(logError);
