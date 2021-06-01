@@ -1,4 +1,4 @@
-const StatItem = ({ item, useHighlight }) => {
+const StatItem = ({ item }) => {
   return (
     <div
       key={item.name}

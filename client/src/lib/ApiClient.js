@@ -1,5 +1,5 @@
-import axios from "axios";
-import * as routes from "../constants/ApiRoutes";
+import axios from 'axios';
+import * as routes from '../constants/ApiRoutes';
 
 function logError(errorResponse) {
   const response = errorResponse.response;
@@ -7,7 +7,7 @@ function logError(errorResponse) {
   if (response && response.data && response.data.error) {
     console.error(`HTTP Error: ${response.data.error}`);
   } else {
-    console.error("Error: ", errorResponse);
+    console.error('Error: ', errorResponse);
   }
 }
 
@@ -16,7 +16,7 @@ function unwrapData(response) {
 }
 
 // axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-axios.defaults.headers.common["X-Api-Key"] = process.env.REACT_APP_API_KEY;
+axios.defaults.headers.common['X-Api-Key'] = process.env.REACT_APP_API_KEY;
 
 const apiClient = {
   getServices: function (callback) {
@@ -35,7 +35,7 @@ const apiClient = {
   },
   getEventTypes: function (serviceId, callback) {
     return axios
-      .get(`${routes.BASE_URL}/${serviceId}/event_types`)
+      .get(`${routes.BASE_URL}/${serviceId}/stats?type=event_type`)
       .then(unwrapData)
       .then(callback)
       .catch(logError);

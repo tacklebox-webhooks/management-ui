@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { formatDateTime } from "../lib/utils";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../actions/EventTypeActions";
+import { useEffect } from 'react';
+import { formatDateTime } from '../lib/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../actions/EventTypeActions';
 
 export default function EventTypes() {
   const currentService = useSelector((state) => state.currentService);
@@ -55,7 +55,7 @@ export default function EventTypes() {
                   <tr
                     key={eventType.uuid}
                     className={
-                      eventTypeIdx % 2 === 0 ? "bg-white" : "bg-gray-50"
+                      eventTypeIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
                     }
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -65,7 +65,7 @@ export default function EventTypes() {
                       {eventType.name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
-                      10
+                      {eventType.subscribers}
                     </td>
                   </tr>
                 ))}

@@ -1,4 +1,4 @@
-import StatItem from "./StatItem";
+import StatItem from './StatItem';
 
 const calculateFailureRate = (failures, total) => {
   const rate = (failures / total) * 100;
@@ -7,14 +7,14 @@ const calculateFailureRate = (failures, total) => {
 
 const StatSummary = ({ stats }) => {
   const statsArray = [
-    { name: "Users", stat: "-" },
-    { name: "Endpoints", stat: "-" },
-    { name: "Events Created", stat: "-" },
-    { name: "Messages Sent", stat: "-" },
+    { name: 'Users', stat: '-' },
+    { name: 'Endpoints', stat: '-' },
+    { name: 'Events Created', stat: '-' },
+    { name: 'Messages Sent', stat: '-' },
   ];
 
   let hasFailures;
-  let failureRate = "-";
+  let failureRate = '-';
 
   if (stats) {
     statsArray[0].stat = stats.users;
@@ -24,12 +24,12 @@ const StatSummary = ({ stats }) => {
 
     if (stats.messages.failed !== 0) {
       failureRate = `${calculateFailureRate(
-        Number(stats.messages.failed),
-        Number(stats.messages.total)
+        stats.messages.failed,
+        stats.messages.total
       )}%`;
       hasFailures = true;
     } else {
-      failureRate = "0.00%";
+      failureRate = '0.00%';
     }
   }
 
@@ -42,8 +42,8 @@ const StatSummary = ({ stats }) => {
         <div
           className={
             hasFailures
-              ? "px-4 py-5 bg-red-100 shadow rounded-lg overflow-hidden sm:p-6"
-              : "px-4 py-5 bg-green-100 shadow rounded-lg overflow-hidden sm:p-6"
+              ? 'px-4 py-5 bg-red-100 shadow rounded-lg overflow-hidden sm:p-6'
+              : 'px-4 py-5 bg-green-100 shadow rounded-lg overflow-hidden sm:p-6'
           }
         >
           <dt className="text-sm font-medium text-gray-800 truncate">
@@ -52,8 +52,8 @@ const StatSummary = ({ stats }) => {
           <dd
             className={
               hasFailures
-                ? "mt-1 text-3xl font-semibold text-red-800"
-                : "mt-1 text-3xl font-semibold text-green-800"
+                ? 'mt-1 text-3xl font-semibold text-red-800'
+                : 'mt-1 text-3xl font-semibold text-green-800'
             }
           >
             {failureRate}
