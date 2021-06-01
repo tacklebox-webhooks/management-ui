@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { formatDateTime } from "../lib/utils";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../actions/EndpointActions";
+import { useEffect } from 'react';
+import { formatDateTime } from '../lib/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../actions/EndpointActions';
 
 export default function Endpoints() {
   const currentService = useSelector((state) => state.currentService);
@@ -63,7 +63,7 @@ export default function Endpoints() {
                   <tr
                     key={endpoint.uuid}
                     className={
-                      endpointIdx % 2 === 0 ? "bg-white" : "bg-gray-50"
+                      endpointIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
                     }
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -76,7 +76,7 @@ export default function Endpoints() {
                       {endpoint.event_types.length}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      0.0%
+                      {`${(endpoint.failure_rate * 100).toFixed(2)}%`}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
                       Test

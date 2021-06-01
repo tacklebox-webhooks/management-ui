@@ -42,7 +42,9 @@ const apiClient = {
   },
   getEndpoints: function (serviceId, userId, callback) {
     return axios
-      .get(`${routes.BASE_URL}/${serviceId}/users/${userId}/subscriptions`)
+      .get(
+        `${routes.BASE_URL}/${serviceId}/stats?type=subscriptions&user=${userId}`
+      )
       .then(unwrapData)
       .then(callback)
       .catch(logError);
