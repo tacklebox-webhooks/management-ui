@@ -1,9 +1,9 @@
-import * as types from "../constants/ActionTypes";
+import * as types from '../constants/ActionTypes';
 
-const currentService = (state = { name: "" }, action) => {
+const currentService = (state = { name: '' }, action) => {
   switch (action.type) {
     case types.FETCH_SERVICES_SUCCESS:
-      if (action.services.length > 0 && state.name === "") {
+      if (action.services.length > 0 && state.name === '') {
         return action.services[0];
       } else {
         return state;

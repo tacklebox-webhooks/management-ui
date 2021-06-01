@@ -1,20 +1,22 @@
-import { Fragment } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../actions/ServiceActions";
+import { Fragment } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../actions/ServiceActions';
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function ServiceDropdown() {
   const selected = useSelector((state) => state.currentService);
+  // console.log(JSON.parse(localStorage.getItem('currentService')));
   const services = useSelector((state) => state.services);
   const dispatch = useDispatch();
 
   const setSelected = (service) => {
     dispatch(actions.setService(service));
+    // localStorage.setItem('currentService', JSON.stringify(service));
   };
 
   return (
@@ -52,8 +54,8 @@ export default function ServiceDropdown() {
                       key={service.uuid}
                       className={({ active }) =>
                         classNames(
-                          active ? "text-white bg-indigo-600" : "text-gray-900",
-                          "cursor-default select-none relative py-2 pl-3 pr-9"
+                          active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                          'cursor-default select-none relative py-2 pl-3 pr-9'
                         )
                       }
                       value={service}
@@ -62,8 +64,8 @@ export default function ServiceDropdown() {
                         <>
                           <span
                             className={classNames(
-                              selected ? "font-semibold" : "font-normal",
-                              "block truncate"
+                              selected ? 'font-semibold' : 'font-normal',
+                              'block truncate'
                             )}
                           >
                             {service.name}
@@ -72,8 +74,8 @@ export default function ServiceDropdown() {
                           {selected ? (
                             <span
                               className={classNames(
-                                active ? "text-white" : "text-indigo-600",
-                                "absolute inset-y-0 right-0 flex items-center pr-4"
+                                active ? 'text-white' : 'text-indigo-600',
+                                'absolute inset-y-0 right-0 flex items-center pr-4'
                               )}
                             >
                               <CheckIcon

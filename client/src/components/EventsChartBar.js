@@ -3,7 +3,30 @@ import { Bar } from 'react-chartjs-2';
 const EndpointsChartBar = ({ eventsByUser }) => {
   const { labels, counts } = calculateChartData(eventsByUser);
   const data = calculateBarData(labels, counts);
-  return <Bar data={data} />;
+  const options = calculateBarOptions();
+  return <Bar data={data} options={options} />;
+};
+
+const calculateBarOptions = () => {
+  return {
+    responsive: true,
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Users',
+        },
+      },
+      y: {
+        beginAtZero: true,
+        suggestedMin: 50,
+        title: {
+          display: true,
+          text: 'Events',
+        },
+      },
+    },
+  };
 };
 
 const calculateChartData = (eventsByUser) => {

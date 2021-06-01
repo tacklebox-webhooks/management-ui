@@ -42,10 +42,13 @@ const calculateChartData = ({ byDay, byMonth, byYear, first }) => {
   } else if (first.month !== currentMonth) {
     xAxis = 'Months';
     labels = buildMonths(first.month, currentMonth);
+
     labels.forEach((month) => {
       const monthNum = MONTHS.indexOf(month);
       counts.push(byMonth[`${monthNum}`] || 0);
     });
+    console.log('Labels: ', labels);
+    console.log('Counts: ', counts);
   } else {
     xAxis = 'Days';
     labels = buildDays(first.day, currentDay);
@@ -81,19 +84,12 @@ const calculateLineOptions = (xAxis) => {
         },
       },
       y: {
+        beginAtZero: true,
+        suggestedMin: 50,
         title: {
           display: true,
           text: 'Messages',
         },
-      },
-    },
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'All Time',
       },
     },
   };

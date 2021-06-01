@@ -1,5 +1,5 @@
-import apiClient from "../lib/ApiClient";
-import * as types from "../constants/ActionTypes";
+import apiClient from '../lib/ApiClient';
+import * as types from '../constants/ActionTypes';
 
 export function fetchUsersSuccess(userList, serviceId) {
   const users = {};
@@ -13,19 +13,9 @@ export function setUser(currentUser) {
 }
 
 export function fetchUsers(serviceId) {
-  return function (dispatch, getState) {
-    const state = getState();
-
-    if (
-      state.users.hasOwnProperty(serviceId) &&
-      state.users[serviceId].length > 0
-    ) {
-      dispatch(setUser(state.users[serviceId][0]));
-      return;
-    }
-
-    apiClient.getUsers(serviceId, (users) =>
-      dispatch(fetchUsersSuccess(users, serviceId))
-    );
+  return function (dispatch) {
+    apiClient.getUsers(serviceId, (users) => {
+      dispatch(fetchUsersSuccess(users, serviceId));
+    });
   };
 }

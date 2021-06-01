@@ -3,11 +3,20 @@ import EventsChartDoughnut from './EventsChartDoughnut';
 import StatSummary from './StatSummary';
 import EventsChartBar from './EventsChartBar';
 import ResponseStatusChart from './ResponseStatusChart';
-import { useSelector } from 'react-redux';
+import * as statActions from '../actions/StatActions';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function Dashboard() {
   const currentService = useSelector((state) => state.currentService);
   const stats = useSelector((state) => state.stats[currentService.uuid]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentService.uuid) {
+      dispatch(statActions.fetchStats(currentService.uuid));
+    }
+  }, [dispatch, currentService.uuid]);
 
   if (!stats) {
     console.log('No stats yet!');
