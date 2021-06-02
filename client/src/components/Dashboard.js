@@ -19,7 +19,6 @@ export default function Dashboard() {
   }, [dispatch, currentService.uuid]);
 
   if (!stats) {
-    console.log('No stats yet!');
     return null;
   }
 
