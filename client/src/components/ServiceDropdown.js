@@ -10,13 +10,13 @@ function classNames(...classes) {
 
 export default function ServiceDropdown() {
   const selected = useSelector((state) => state.currentService);
-  // console.log(JSON.parse(localStorage.getItem('currentService')));
   const services = useSelector((state) => state.services);
   const dispatch = useDispatch();
 
   const setSelected = (service) => {
+    localStorage.setItem('currentService', JSON.stringify(service));
+    localStorage.clear('currentUser');
     dispatch(actions.setService(service));
-    // localStorage.setItem('currentService', JSON.stringify(service));
   };
 
   return (

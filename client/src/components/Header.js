@@ -5,16 +5,12 @@ import UserDropdown from './UserDropdown';
 import GridItem from './GridItem';
 import Timeframe from './Timeframe';
 import * as userActions from '../actions/UserActions';
-// import * as endpointActions from '../actions/EndpointActions';
-// import * as eventActions from '../actions/EventActions';
-// import * as messageActions from '../actions/MessageActions';
 
 const userDropdownPages = ['Endpoints', 'Events', 'Messages'];
 const timeframePages = ['Dashboard'];
 
 const Header = ({ page }) => {
   const currentService = useSelector((state) => state.currentService);
-  // const currentUser = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,18 +18,6 @@ const Header = ({ page }) => {
       dispatch(userActions.fetchUsers(currentService.uuid));
     }
   }, [dispatch, currentService.uuid]);
-
-  // useEffect(() => {
-  //   if (currentService.uuid && currentUser.uuid) {
-  //     dispatch(
-  //       endpointActions.fetchEndpoints(currentService.uuid, currentUser.uuid)
-  //     );
-  //     dispatch(eventActions.fetchEvents(currentService.uuid, currentUser.uuid));
-  //     dispatch(
-  //       messageActions.fetchMessages(currentService.uuid, currentUser.uuid)
-  //     );
-  //   }
-  // }, [dispatch, currentUser.uuid]);
 
   return (
     <dl className="grid grid-cols-1 gap-5 sm:grid-cols-5">

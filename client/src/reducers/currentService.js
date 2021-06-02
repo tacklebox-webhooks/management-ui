@@ -4,6 +4,10 @@ const currentService = (state = { name: '' }, action) => {
   switch (action.type) {
     case types.FETCH_SERVICES_SUCCESS:
       if (action.services.length > 0 && state.name === '') {
+        if (localStorage.getItem('currentService')) {
+          return JSON.parse(localStorage.getItem('currentService'));
+        }
+
         return action.services[0];
       } else {
         return state;

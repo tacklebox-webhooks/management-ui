@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import * as actions from "./actions/ServiceActions";
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import * as actions from './actions/ServiceActions';
 import {
   CalendarIcon,
   FolderIcon,
@@ -9,39 +9,39 @@ import {
   MenuIcon,
   UsersIcon,
   FilterIcon,
-} from "@heroicons/react/outline";
-import { Switch, Route, useLocation } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import Users from "./components/Users";
-import EventTypes from "./components/EventTypes";
-import Endpoints from "./components/Endpoints";
-import Events from "./components/Events";
-import Messages from "./components/Messages";
-import DesktopNav from "./components/DesktopNav";
-import MobileNav from "./components/MobileNav";
-import Header from "./components/Header";
+} from '@heroicons/react/outline';
+import { Switch, Route, useLocation } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+import Users from './components/Users';
+import EventTypes from './components/EventTypes';
+import Endpoints from './components/Endpoints';
+import Events from './components/Events';
+import Messages from './components/Messages';
+import DesktopNav from './components/DesktopNav';
+import MobileNav from './components/MobileNav';
+import Header from './components/Header';
 
 const navigation = [
-  { name: "Dashboard", path: "/", icon: HomeIcon, current: true },
-  { name: "Users", path: "/users", icon: UsersIcon, current: false },
+  { name: 'Dashboard', path: '/', icon: HomeIcon, current: true },
+  { name: 'Users', path: '/users', icon: UsersIcon, current: false },
   {
-    name: "Event Types",
-    path: "/event_types",
+    name: 'Event Types',
+    path: '/event_types',
     icon: FilterIcon,
     current: false,
   },
-  { name: "Endpoints", path: "/endpoints", icon: FolderIcon, current: false },
-  { name: "Events", path: "/events", icon: CalendarIcon, current: false },
-  { name: "Messages", path: "/messages", icon: InboxIcon, current: false },
+  { name: 'Endpoints', path: '/endpoints', icon: FolderIcon, current: false },
+  { name: 'Events', path: '/events', icon: CalendarIcon, current: false },
+  { name: 'Messages', path: '/messages', icon: InboxIcon, current: false },
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState('');
 
   const location = useLocation();
 

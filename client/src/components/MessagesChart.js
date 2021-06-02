@@ -47,8 +47,6 @@ const calculateChartData = ({ byDay, byMonth, byYear, first }) => {
       const monthNum = MONTHS.indexOf(month);
       counts.push(byMonth[`${monthNum}`] || 0);
     });
-    console.log('Labels: ', labels);
-    console.log('Counts: ', counts);
   } else {
     xAxis = 'Days';
     labels = buildDays(first.day, currentDay);
