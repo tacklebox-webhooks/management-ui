@@ -21,8 +21,14 @@ export default function UserDropdown() {
 
   useEffect(() => {
     if (users) {
-      localStorage.setItem('currentUser', JSON.stringify(users[0]));
-      dispatch(actions.setUser(users[0]));
+      let user = {};
+
+      if (users.length > 0) {
+        user = users[0];
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      dispatch(actions.setUser(user));
     }
   }, [dispatch, currentService.uuid]);
 

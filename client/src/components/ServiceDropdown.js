@@ -15,7 +15,7 @@ export default function ServiceDropdown() {
 
   const setSelected = (service) => {
     localStorage.setItem('currentService', JSON.stringify(service));
-    localStorage.clear('currentUser');
+    localStorage.removeItem('currentUser');
     dispatch(actions.setService(service));
   };
 
